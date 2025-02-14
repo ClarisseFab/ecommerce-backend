@@ -23,10 +23,17 @@ class Api::V1::ShoppingCartsController < ApplicationController
     end
   end
 
+  def destroy
+    @shopping_cart = ShoppingCart.find(params[:id])
+    @shopping_cart.destroy
+    @shopping_carts = ShoppingCart.all
+    render :index
+  end
+
   private
 
   def shopping_cart_params
-    params.require(:shopping_cart).permit(:quantity, :user_id, :product_id)
+    params.require(:shopping_cart).permit(:id, :quantity, :user_id, :product_id)
   end
 
   def render_error

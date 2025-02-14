@@ -9,9 +9,12 @@
 #   end
 #
 p "I destroy former seeds"
-User.destroy_all
-Product.destroy_all
+
+Wishlist.destroy_all
+ShoppingCart.destroy_all
 Order.destroy_all
+Product.destroy_all
+User.destroy_all
 
 p "I create a user"
 User.create(email: 'test@test.fr', password: 'password')
@@ -27,7 +30,8 @@ Product.create(
   period: 'Eté',
   description: [
     'Traversez le Vercors en raquettes, tirez votre pulka et dormez dans la neige tel un trappeur. Une aventure hivernale unique dans un massif hyper sauvage !'
-  ]
+  ],
+  photo: Rails.root.join('app', 'assets', 'images', 'mont-blanc.jpg')
 )
 
 Product.create(
@@ -79,6 +83,19 @@ Product.create(
   period: 'Printemps - Ete - Automne',
   description: [
     "Vivez une aventure forte en Bretagne, en alternant rando, canoë et vélo sur la route de Saint Malo, en petit groupe et avec un guide local !"
+  ]
+)
+
+Product.create(
+  name: "A la découvert des Volcans d'Auvergne",
+  price: 560,
+  duration: 4,
+  length: 70,
+  difficulty: 'modéré',
+  departure_place: 'Clermont-Ferrand',
+  period: 'Printemps - Ete - Automne',
+  description: [
+    "Découvrez cette belle région et ses volcans, avec un guide passionné et passionant !"
   ]
 )
 
