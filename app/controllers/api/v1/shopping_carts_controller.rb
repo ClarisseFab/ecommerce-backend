@@ -30,7 +30,27 @@ class Api::V1::ShoppingCartsController < ApplicationController
     render :index
   end
 
+  def empty_shopping_cart
+    # je créé un order (jai besoin du total_price et de la date)
+    order = Order.new(order_params)
+    order.user = current_user
+    if order.save
+      # product_ids = order_params[:products_ids]
+      # product_ids.each do |product_id|
+      #   OrderProduct.create!(order_id: order.id, product_id: product_id)
+      # end
+      ShoppingCart.destroy_all
+      render json: { message: "Vos achats sont confirmés, à très vite pour l'aventure !" }, status: :ok
+    end
+    # ShoppingCart.destroy_all
+    # render json: { message: "Vos achats sont confirmés, à très vite pour l'aventure !" }, status: :ok
+  end
+
   private
+
+  def order_params
+    params.require(:order).permit(:user_id, :total_price, :date, order_products_attributes: [:product_id])
+  end
 
   def shopping_cart_params
     params.require(:shopping_cart).permit(:id, :quantity, :user_id, :product_id)

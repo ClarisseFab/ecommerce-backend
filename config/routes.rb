@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :products, only: [:index, :show]
-      resources :shopping_carts, only: [:index, :show, :create, :destroy]
+      resources :shopping_carts, only: [:index, :show, :create, :destroy] do
+        delete 'empty_shopping_cart', on: :collection
+      end
       resources :wishlists, only: [:index, :create, :destroy]
       resources :orders, only: [:index, :create]
     end
