@@ -31,19 +31,12 @@ class Api::V1::ShoppingCartsController < ApplicationController
   end
 
   def empty_shopping_cart
-    # je créé un order (jai besoin du total_price et de la date)
     order = Order.new(order_params)
     order.user = current_user
     if order.save
-      # product_ids = order_params[:products_ids]
-      # product_ids.each do |product_id|
-      #   OrderProduct.create!(order_id: order.id, product_id: product_id)
-      # end
       ShoppingCart.destroy_all
-      render json: { message: "Vos achats sont confirmés, à très vite pour l'aventure !" }, status: :ok
+      render json: { message: "Vos achats sont confirmés, à très vite pour l'aventure !", orders: Order.all }, status: :ok
     end
-    # ShoppingCart.destroy_all
-    # render json: { message: "Vos achats sont confirmés, à très vite pour l'aventure !" }, status: :ok
   end
 
   private
