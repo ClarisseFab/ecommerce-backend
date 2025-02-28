@@ -21,7 +21,6 @@ class Api::V1::WishlistsController < ApplicationController
     @wishlist = Wishlist.find(params[:id])
     @wishlist.destroy
     @wishlists = Wishlist.all
-    # Rails.logger.info(@wishlists)
     render :index
   end
 

@@ -4,13 +4,7 @@ class Api::V1::ShoppingCartsController < ApplicationController
 
   def index
     @shopping_carts = ShoppingCart.all
-    # render json: shopping_carts
   end
-
-  # def show
-  #   @shopping_cart = ShoppingCart.find(params[:id])
-  #   render json: @shopping_cart
-  # end
 
   def create
     shopping_cart = ShoppingCart.new(shopping_cart_params)
