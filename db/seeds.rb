@@ -10,9 +10,10 @@
 #
 p "I destroy former seeds"
 
+Order.destroy_all
+OrderProduct.destroy_all
 Wishlist.destroy_all
 ShoppingCart.destroy_all
-Order.destroy_all
 Product.destroy_all
 User.destroy_all
 
